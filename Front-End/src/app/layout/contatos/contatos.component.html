@@ -1,0 +1,92 @@
+
+<br>
+
+<div class="card">
+
+  <div class="card-header">
+    <div class="row">
+      <div class="col-2">
+        <img width="40px" src="./../../../../../assets/ico-user.png" />
+      </div>
+      <div class="col mt-2 text-center">
+        <span class="card-title ft">Contatos</span>
+      </div>
+      <div class="col-2 d-md-flex justify-content-md-end mt-2"></div>
+    </div>
+  </div>
+
+  <div class="card-body">
+
+    <br>
+
+    <div class="row">
+      &nbsp;&nbsp;
+      <div class="col">
+        <span>Dados:</span>
+      </div>
+      <div class="col d-md-flex justify-content-md-end" style="position: relative; top: -20px;">
+        <select (change)="onSelected($event.target);" class="form-select" style="width: 240px; height: 40px;">
+          <option selected value="0">Selecione o Cliente . . .</option>
+          <option *ngFor="let item of this.clientes" value="{{item.id}}" [selected]="item.id == this.cliente.id">{{item.nome}}</option>
+        </select>
+        &nbsp;&nbsp;
+        &nbsp;&nbsp;
+        <button (click)="onCreate();" class="btn btn-outline-primary btn-sm" type="button" style="width: 120px; height: 40px;">
+          <img width="20px" alt="" src="../../../assets/ico-add.png" />
+          &nbsp;&nbsp;<span>NOVO</span>
+        </button>
+      </div>
+      &nbsp;&nbsp;
+    </div>
+
+    <div class="row">
+      <hr>
+    </div>
+
+    <br>
+
+    <div class="row">
+      <div class="col">
+        <table class="table table-striped table-hover">
+          <caption>&nbsp;&nbsp;Lista - Contatos [{{this.cliente.contatos.length}}]</caption>
+          <thead>
+            <tr>
+              <th style="width: 5%;"></th>
+              <th style="width: 30%;">Nome</th>
+              <th style="width: 30%;">Email</th>
+              <th style="width: 20%;">Telefone</th>
+              <th style="width: 20%;">WhatsApp</th>
+            </tr>
+          </thead>
+          <tbody *ngIf="this.cliente">
+            <tr *ngFor="let item of this.cliente.contatos" id="item_{{item.id}}" (click)="onSelect(item.id);" style="cursor: pointer;">
+              <th style="width: 5%;">
+                <img width="32px" class="rounded mx-auto d-block" src="./../../../../assets/ico-user.png" />
+              </th>
+              <td style="width: 30%;">{{item.nome}}</td>
+              <td style="width: 30%;">{{item.email}}</td>
+              <td style="width: 20%;">{{item.telefone}}</td>
+              <td style="width: 20%;">{{item.whatsApp}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col"></div>
+      <div class="col-2">
+        <button routerLink="/" class="btn btn-outline-secondary btn-sm" type="button" style="width: 120px; height: 40px;">
+          <img width="20px" alt="" src="../../../assets/ico-return.png" />
+          &nbsp;&nbsp;<span>VOLTAR</span>
+        </button>
+      </div>
+    </div>
+
+    <br>
+
+  </div>
+
+  <div class="card-footer"></div>
+
+</div>
