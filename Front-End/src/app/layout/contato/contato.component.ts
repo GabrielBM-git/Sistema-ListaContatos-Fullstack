@@ -131,9 +131,10 @@ export class ContatoComponent implements OnInit {
 
   onSelect(event: any) {
 
-    console.log('event: ' + event.value)
+    this.cliente = new Cliente();
+    this.session.remove('cliente');
 
-    this.clientes?.find(elem => { 
+    this.clientes.find(elem => { 
       if(elem.id == event.value) {
         this.cliente = elem;
         this.session.set('cliente', this.cliente);

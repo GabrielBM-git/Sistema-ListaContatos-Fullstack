@@ -28,6 +28,8 @@ export class ContatosComponent implements OnInit {
     this.clientes = this.session.get('clientes');
     this.cliente = this.session.get('cliente');
 
+    this.session.remove('contato');
+
     if(this.cliente === null)
       this.cliente = new Cliente();
 
@@ -130,14 +132,9 @@ export class ContatosComponent implements OnInit {
 
   //-----------------------------------------------------------------------------------------------
 
-  onCreate() {
-    this.session.remove('contato');
-    this.router.navigate(['/contato']);
-  }
-
   onSelect(id: number) {
 
-    this.cliente?.contatos.find(elem => { 
+    this.cliente.contatos.find(elem => { 
       if(elem.id == id) {
         this.session.set('contato', elem);
         this.router.navigate(['/contato']);
@@ -148,7 +145,9 @@ export class ContatosComponent implements OnInit {
 
   onSelected(event: any) {
 
-    this.clientes?.find(elem => { 
+    this.cliente = new Cliente();
+
+    this.clientes.find(elem => { 
       if(elem.id == event.value) {
         this.cliente = elem;
         this.session.set('cliente', this.cliente);
@@ -157,10 +156,8 @@ export class ContatosComponent implements OnInit {
 
     if(event.value == 0)
     {
-      this.cliente = new Cliente();
-      
-      this.Load_ClienteId();
       this.session.set('cliente', this.cliente);
+      this.Load_ClienteId();
     }
   }
 
